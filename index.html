@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 1 Month Anniversary 🤍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #start-btn {
+            padding: 16px 36px;
+            font-size: 1.25rem;
+            background-color: #e94560;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(233, 69, 96, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-family: 'Prompt', sans-serif;
+            z-index: 10;
+        }
+
+        #start-btn:hover {
+            transform: scale(1.05);
+            background-color: #ff5277;
+        }
+
+        #story-container {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 95%;
+            max-width: 850px;
+            height: 90vh;
+            position: relative;
+        }
+
+        /* กล่องเนื้อหาแต่ละหน้า */
+        .story-card {
+            opacity: 0;
+            position: absolute;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transform: translateY(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+            pointer-events: none;
+        }
+
+        .story-card.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* รูปภาพ */
+        .story-img {
+            max-width: 90%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        /* ข้อความบรรยาย */
+        .story-text {
+            font-size: 1.35rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
+            word-break: keep-all;
+            max-width: 100%;
+            margin: 0;
+            font-weight: 300;
+        }
+
+        .heart {
+            color: #e94560;
+            font-size: 1.5rem;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 4%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: #fff;
+        }
+
+        /* ดวงดาวพื้นหลัง */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- แท็กเล่นไฟล์เพลง รองรับทั้ง .mp3, .m4a, .mp4, .wav -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+        <source src="music.m4a" type="audio/mp4">
+        <source src="music.mp4" type="audio/mp4">
+        <source src="music.wav" type="audio/wav">
+    </audio>
+
+    <div class="stars" id="stars"></div>
+
+    <button id="start-btn">กดเพื่อเปิดกล่องความทรงจำของเรา 💌</button>
+
+    <div id="story-container">
+        
+        <!-- ===== ช่วงแรก: ข้อความบรรยายความรู้สึกแบบไม่มีรูป (หน้า 1 - 8) ===== -->
+
+        <!-- หน้าที่ 1 -->
+        <div class="story-card">
+            <p class="story-text">Happy 1 Month Anniversary นะคะตอง <span class="heart">❤</span></p>
+        </div>
+
+        <!-- หน้าที่ 2 -->
+        <div class="story-card">
+            <p class="story-text">1 เดือนที่ผ่านมา... สำหรับเท็นมันเป็นเวลาที่พิเศษและมีความหมายมากๆ</p>
+        </div>
+
+        <!-- หน้าที่ 3 -->
+        <div class="story-card">
+            <p class="story-text">ถึงจะเป็นแค่เดือนเดียว แต่เราก็ผ่านอะไรด้วยกันมาเยอะแยะเลยเนอะ</p>
+        </div>
+
+        <!-- หน้าที่ 4 -->
+        <div class="story-card">
+            <p class="story-text">ทั้งรอยยิ้ม เสียงหัวเราะ แล้วก็ความเหนื่อยล้าในบางวัน...</p>
+        </div>
+
+        <!-- หน้าที่ 5 -->
+        <div class="story-card">
+            <p class="story-text">เท็นรู้ว่าตองเรียนพยาบาลหนักมากๆ ทั้งเรียน ทั้งขึ้นวอร์ด เหนื่อยจนแทบจะไม่มีเวลาพัก...</p>
+        </div>
+
+        <!-- หน้าที่ 6 -->
+        <div class="story-card">
+            <p class="story-text">แต่ตองก็ยังน่ารักและแบ่งเวลามาเป็นความสุขให้เท็นเสมอเลย ขอบคุณนะ</p>
+        </div>
+
+        <!-- หน้าที่ 7 -->
+        <div class="story-card">
+            <p class="story-text">อยากให้รู้ว่า เท็นภูมิใจในตัวตองมากๆ นะคนเก่ง</p>
+        </div>
+
+        <!-- หน้าที่ 8 -->
+        <div class="story-card">
+            <p class="story-text">เท็นอาจจะช่วยแบ่งเบาความเหนื่อยไม่ได้ทั้งหมด... แต่อยากจะเป็น "เซฟโซน" ให้ตองในทุกๆ วันนะ</p>
+        </div>
+
+        <!-- ===== ช่วงหลัง: อัลบั้มความทรงจำ 8 รูปภาพจากโฟลเดอร์ 1M ===== -->
+
+        <!-- รูปที่ 1 (หน้า 9) -->
+        <div class="story-card">
+            <img src="instc 2026-10-01 2250201B08E5189EED.jpg" alt="ความทรงจำที่ 1" class="story-img">
+            <p class="story-text">ขอบคุณสำหรับทุกๆ รอยยิ้ม และช่วงเวลาดีๆ ที่มีให้กันนะ</p>
+        </div>
+
+        <!-- รูปที่ 2 (หน้า 10) -->
+        <div class="story-card">
+            <img src="instc 2026-10-01 22502108DF7747EC4F.jpg" alt="ความทรงจำที่ 2" class="story-img">
+            <p class="story-text">ไม่ว่าจะเหนื่อยแค่ไหน พอได้เห็นหน้าตอง เท็นก็ยิ้มได้เสมอเลย</p>
+        </div>
+
+        <!-- รูปที่ 3 (หน้า 11) -->
+        <div class="story-card">
+            <img src="instc 2026-10-01 225021555CEAC5DE87.jpg" alt="ความทรงจำที่ 3" class="story-img">
+            <p class="story-text">ขอบคุณที่คอยจับมือ และเดินข้างๆ กันมาตลอดนะ</p>
+        </div>
+
+        <!-- รูปที่ 4 (หน้า 12) -->
+        <div class="story-card">
+            <img src="instc 2026-10-01 225022836B4A09030A.jpg" alt="ความทรงจำที่ 4" class="story-img">
+            <p class="story-text">ขอบคุณตองที่เป็นความอบอุ่น และเป็นเรื่องราวที่ดีที่สุดในทุกๆ วันของเท็น</p>
+        </div>
+
+        <!-- รูปที่ 5 (หน้า 13) -->
+        <div class="story-card">
+            <img src="instc 2026-10-01 225022CC452383E4C1.jpg" alt="ความทรงจำที่ 5" class="story-img">
+            <p class="story-text">ถึงตองจะเหนื่อยจากการเรียน แต่ตองก็เก่งมากๆ แล้วนะ รู้ไหม</p>
+        </div>
+
+        <!-- รูปที่ 6 (หน้า 14) -->
+        <div class="story-card">
+            <img src="instc 2026-10-01 2250234A9E6E47FAA9.jpg" alt="ความทรงจำที่ 6" class="story-img">
+            <p class="story-text">ทุกๆ ภาพถ่าย มันเป็นบันทึกความสุขที่เราสองคนตั้งใจสร้างขึ้นมาด้วยกัน</p>
+        </div>
+
+        <!-- รูปที่ 7 (หน้า 15) -->
+        <div class="story-card">
+            <img src="instc 2026-10-01 22502359317EDF0B5F.jpg" alt="ความทรงจำที่ 7" class="story-img">
+            <p class="story-text">นี่เพิ่งจะเริ่มต้นหน้าแรกของหนังสือเล่มใหม่ของเราเอง... ยังมีเรื่องราวอีกเยอะเลยที่รอเราอยู่</p>
+        </div>
+
+        <!-- รูปที่ 8 (หน้า 16 / หน้าสุดท้าย) -->
+        <div class="story-card">
+            <img src="instc 2026-10-01 225024C32941A4AD25.jpg" alt="ความทรงจำที่ 8" class="story-img">
+            <p class="story-text">อยู่เติบโตไปด้วยกันเรื่อยๆ นานๆ เลยนะ<br><br>รักตองที่สุดเลย <span class="heart">❤</span><br><br>- เท็น -</p>
+        </div>
+
+        <!-- ปุ่มควบคุม -->
+        <div class="controls">
+            <button class="nav-btn" id="prev-btn" style="visibility: hidden;">ย้อนกลับ</button>
+            <button class="nav-btn" id="next-btn">หน้าถัดไป</button>
+        </div>
+    </div>
+
+    <script>
+        // สร้างดวงดาวพื้นหลัง
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                let star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.backgroundColor = 'white';
+                star.style.borderRadius = '50%';
+                star.style.opacity = Math.random();
+                star.style.animation = `pulse ${Math.random() * 3 + 1}s infinite alternate`;
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+
+        const startBtn = document.getElementById('start-btn');
+        const storyContainer = document.getElementById('story-container');
+        const cards = document.querySelectorAll('.story-card');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const bgMusic = document.getElementById('bg-music');
+        
+        let currentIndex = 0;
+
+        startBtn.addEventListener('click', () => {
+            startBtn.style.display = 'none';
+            storyContainer.style.display = 'flex';
+            
+            // สั่งเล่นเพลง
+            bgMusic.volume = 0.6;
+            let playPromise = bgMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Audio play error:", error);
+                    alert("ไม่พบไฟล์เพลง หรือนามสกุลไฟล์ไม่ตรงกับในโฟลเดอร์ครับ! โปรดเช็กชื่อไฟล์เพลงอีกครั้ง");
+                });
+            }
+
+            updateStory();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) {
+                currentIndex++;
+                updateStory();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateStory();
+            }
+        });
+
+        function updateStory() {
+            cards.forEach((card, index) => {
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            prevBtn.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+            
+            if (currentIndex === cards.length - 1) {
+                nextBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'block';
+                nextBtn.textContent = 'หน้าถัดไป';
+            }
+        }
+    </script>
+</body>
+</html>
